@@ -13,5 +13,12 @@ pipeline{
             }
             
         }
+        stage('create container'){
+            steps{
+                
+                sh 'docker run -p 8085:5000 vsrekul/pyapp'
+            }
+            
+        }
     }
 }
