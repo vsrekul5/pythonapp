@@ -9,7 +9,7 @@ pipeline{
         stage('build docker image'){
             steps{
                 sh 'docker --version'
-                sh 'docker build -t vsrekul/pyapp .'
+                sh 'sudo docker build -t vsrekul/pyapp .'
             }
             
         }
