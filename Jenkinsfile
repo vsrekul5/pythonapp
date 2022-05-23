@@ -12,7 +12,7 @@ pipeline{
         stage('build docker image'){
             steps{
                 script{
-                    app = docker.build("partifact/pyapp")
+                    app = docker.build("partifact")
                  //app = docker.build("pyapp")
                  //sh 'docker build -t partifact .'
                  //sh 'docker tag partifact:latest 118875261478.dkr.ecr.us-east-1.amazonaws.com/partifact:latest'
