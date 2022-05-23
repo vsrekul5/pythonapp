@@ -7,6 +7,7 @@ pipeline{
             }
         }
         stage('build docker image'){
+            sh 'docker -version'
             sh 'docker build -t vsrekul/pyapp .'
         }
     }
