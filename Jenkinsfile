@@ -12,18 +12,22 @@ pipeline{
         stage('build docker image'){
             steps{
                 script{
-                    app = docker.build("partifact/pyapp")
+                    //app = docker.build("partifact/pyapp")
                  //app = docker.build("pyapp")
+                 sh 'docker build -t partifact .'
+                 sh 'docker tag partifact:latest 118875261478.dkr.ecr.us-east-1.amazonaws.com/partifact:latest'
                 }
             }
             
         }
-        stage('create container'){
+        stage('Push container image'){
             steps{
                 script{
                     docker.withRegistry('https://118875261478.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecrid1') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                    //app.push("${env.BUILD_NUMBER}")
+                    //app.push("latest")
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 118875261478.dkr.ecr.us-east-1.amazonaws.com'
+                    sh 'docker push 118875261478.dkr.ecr.us-east-1.amazonaws.com/partifact:latest'
                     }              
                 
                 }            
