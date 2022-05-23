@@ -14,7 +14,7 @@ pipeline{
                 script{
                     app = docker.build("partifact")
                  //app = docker.build("pyapp")
-                 app.run('-p 8085:5000')
+                 //app.run('-p 8085:5000')
                  //sh 'docker build -t partifact .'
                  //sh 'docker tag partifact:latest 118875261478.dkr.ecr.us-east-1.amazonaws.com/partifact:latest'
                 }
@@ -26,7 +26,7 @@ pipeline{
                 script{
                     docker.withRegistry('https://118875261478.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecrid1') {
                     app.push("${env.BUILD_NUMBER}")
-                    app.push("${env.BUILD_NUMBER}")                    
+                    app.push("latest")                    
                     }              
                 
                 }            
