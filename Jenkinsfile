@@ -12,7 +12,8 @@ pipeline{
         stage('build docker image'){
             steps{
                 script{
-                 app = docker.build("pyapp")
+                    app = docker.build("partifact/pyapp")
+                 //app = docker.build("pyapp")
                 }
             }
             
