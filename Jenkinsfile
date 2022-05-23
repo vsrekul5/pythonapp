@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        app = ''
+    }
     stages{
         stage('Build'){
             steps{
@@ -8,17 +11,21 @@ pipeline{
         }
         stage('build docker image'){
             steps{
-                sh 'docker --version'
-                sh 'docker build -t vsrekul/pyapp .'
+                script{
+                 app = docker.build("pyapp")
+                }
             }
             
         }
         stage('create container'){
             steps{
+                script{
+                    docker.withRegistry('https://118875261478.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecrid1') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                }              
                 
-                sh 'docker run -p 8085:5000 vsrekul/pyapp'
-            }
-            
+            }            
         }
     }
 }
