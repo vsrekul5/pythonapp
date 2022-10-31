@@ -16,7 +16,7 @@ pipeline{
                  //app = docker.build("pyapp")
                  //app.run('-p 8085:5000')
                  sh 'docker build -t jenkins .'
-                 sh 'docker tag jenkins vsrekul/jenkins:("${env.BUILD_NUMBER}")'
+                 sh 'docker tag jenkins vsrekul/jenkins:${env.BUILD_NUMBER}'
                 }
             }
             
