@@ -16,7 +16,7 @@ pipeline{
                  //app = docker.build("pyapp")
                  //app.run('-p 8085:5000')
                  sh 'docker build -t jenkins .'
-                 sh 'docker tag jenkins:latest public.ecr.aws/q2r8c9m4/jenkins:latest'
+                 sh 'docker tag jenkins:${env.BUILD_NUMBER} vsrekul/jenkins:${env.BUILD_NUMBER}'
                 }
             }
             
@@ -28,7 +28,7 @@ pipeline{
                     //sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q2r8c9m4'
                     //app.push("${env.BUILD_NUMBER}")
                     //app.push("latest")  
-                    sh 'docker push public.ecr.aws/q2r8c9m4/jenkins:latest'                    
+                    sh 'docker push vsrekul/jenkins:${env.BUILD_NUMBER}'                    
                 
                 }            
             }
