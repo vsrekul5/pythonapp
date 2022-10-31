@@ -38,7 +38,7 @@ pipeline{
         stage('build docker image'){
             steps{
                 script{
-                 sh 'docker run -d -p 8051:5000 vsrekul/jenkins:1'
+                 sh 'docker run -d -p 8051:5000 vsrekul/jenkins:$BUILD_NUMBER'
                 }
             }
             
