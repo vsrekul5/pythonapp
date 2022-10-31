@@ -35,7 +35,7 @@ pipeline{
                 }            
             }
         }
-        stage('build docker image'){
+        stage('run docker cont'){
             steps{
                 script{
                  sh 'docker run -d -p 8051:5000 vsrekul/jenkins:$BUILD_NUMBER'
