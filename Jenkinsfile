@@ -1,6 +1,7 @@
 pipeline{
     agent any
     environment{
+        DOCKERHUB_CREDENTIALS=credentials('vsrekul')
         app = ''
     }
     stages{
@@ -16,7 +17,7 @@ pipeline{
                  //app = docker.build("pyapp")
                  //app.run('-p 8085:5000')
                  sh 'docker build -t jenkins .'
-                 sh 'docker tag jenkins vsrekul/jenkins'
+                 sh 'docker tag jenkins vsrekul/jenkins:$BUILD_NUMBER'
                 }
             }
             
@@ -28,7 +29,8 @@ pipeline{
                     //sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q2r8c9m4'
                     //app.push("${env.BUILD_NUMBER}")
                     //app.push("latest")  
-                    sh 'docker push vsrekul/jenkins'                    
+                    sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+                    sh 'docker push vsrekul/jenkins:$BUILD_NUMBER'                    
                 
                 }            
             }
