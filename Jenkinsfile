@@ -25,7 +25,7 @@ pipeline{
             steps{
                 script{
                     //docker.withRegistry('https://118875261478.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ecrid1') {
-                    sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q2r8c9m4'
+                    //sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q2r8c9m4'
                     //app.push("${env.BUILD_NUMBER}")
                     //app.push("latest")  
                     sh 'docker push jenkins:latest public.ecr.aws/q2r8c9m4/jenkins:latest'                    
